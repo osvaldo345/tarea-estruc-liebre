@@ -7,10 +7,10 @@ class Corredor {
         return this._posicionDos;
     }
 
-    set posicion(posicionDos){
+    /*set posicion(posicionDos){
         this._posicionDos = posicionDos;
 
-    }
+    }*/
 }
 
 
@@ -37,17 +37,17 @@ class Liebre extends Corredor{
         let probabilidadDos = 20;
         var pasoLiebre = d1.lanzar(probabilidadDos);
         if (pasoLiebre == 1 || pasoLiebre == 2) { 
-            posicionDos += -12;
+            this._posicionDos = -12;
         } else if (pasoLiebre == 3 || pasoLiebre == 4 || pasoLiebre == 5) { 
-            posicionDos += -2;
+            this._posicionDos = -2;
         } else if (pasoLiebre == 6 || pasoLiebre == 7 || pasoLiebre == 8 || pasoLiebre == 9) { 
-            posicionDos += 0;
+            this._posicionDos = 0;
         } else if (pasoLiebre == 10 || pasoLiebre == 11 || pasoLiebre == 12 || pasoLiebre == 13) { 
-            posicionDos += 9;
+            this._posicionDos = 9;
         } else { 
-            this.posicionDos += 1;
+            this._posicionDos = 1;
     }
-    return this.posicionDos;
+    return this._posicionDos;
         }
 }
 
@@ -60,16 +60,16 @@ class Tortuga extends Corredor{
 
     avanceTortuga(pasoTortuga){
         this.probabilidadDos = 10;
-        var pasoTortuga = d1.lanzar(this.probabilidadDos);
+        var pasoTortuga = d1.lanzar(this._probabilidadDos);
         if (pasoTortuga == 1 || pasoTortuga == 2) { 
-            posicionDos += -6;
+            this._posicionDos += -6;
         } else if (pasoTortuga == 3 || pasoTortuga == 4 || pasoTortuga == 5) { 
-            posicionDos += 1;
+            this._posicionDos += 1;
         } else {  
-            this.posicionDos += 3;
+            this._posicionDos += 3;
         
         }
-        return this.posicionDos;
+        return this._posicionDos;
         }
 
 }
@@ -81,27 +81,26 @@ class Carrera{
     ganador(){
         var liebre = new Liebre();
         var tortuga = new Tortuga();
-        let pasoLiebre = liebre.avanceLiebre();
-        let pasoTortuga = tortuga.avanceTortuga();
+        let pasoLiebre = 0;
+        let pasoTortuga =  0;
         
-        while(tortuga.posicionDos <= 90 && liebre.posicionDos < 90){
-            tortuga.avanceTortuga();
-            liebre.avanceLiebre();
+        while(pasoTortuga <= 90 && pasoLiebre < 90){
+            pasoTortuga = pasoTortuga + tortuga.avanceTortuga();
+            pasoLiebre = pasoLiebre + liebre.avanceLiebre();
             console.log('posicion Tortuga ' + tortuga.avanceTortuga());
             console.log('posicion Liebre ' + liebre.avanceLiebre());
         }
-        if(pasoLiebre >= 90 && pasoTortuga <= 90) {
+        if(pasoLiebre >= 90 && pasoTortuga < 90) {
             console.log('Liebre gana la carrera');
         }
-        else if(pasoLiebre <= 90 && pasoTortuga >= 90) {
+        else if(pasoLiebre <= 90 && pasoTortuga > 90) {
             console.log('La tortuga gana la carrera');
         }
         else {
             console.log('Empate');
         }
         }
-
-    }
+}
 
 d1 = new Dado;
 var ganar = new Carrera();
