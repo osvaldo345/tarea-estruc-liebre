@@ -20,7 +20,7 @@ class Dado{
 
     }
     lanzar(){
-        return Math.trunc(Math.random() * probabilidadDos + 1);
+        return Math.trunc(Math.random() * this.probabilidad + 1);
         
     }
 }
@@ -34,9 +34,9 @@ class Liebre extends Corredor{
     }
 
     avanceLiebre(pasoLiembre){
-        let probabilidadDos = lanzar.probabilidadDos = 20;
+        let probabilidadDos = 20;
         var pasoLiembre = d1.lanzar(probabilidadDos);
-        if (l == 1 || pasoLiembre == 2) { //10%
+        if (pasoLiembre == 1 || pasoLiembre == 2) { //10%
             posicionDos += -12;
         } else if (pasoLiembre == 3 || pasoLiembre == 4 || pasoLiembre == 5) { //15%
             posicionDos += -2;
@@ -45,9 +45,9 @@ class Liebre extends Corredor{
         } else if (pasoLiembre == 10 || pasoLiembre == 11 || pasoLiembre == 12 || pasoLiembre == 13) { //20%
             posicionDos += 9;
         } else {  //35%
-            posicionDos += 1;
+            this.posicionDos += 1;
     }
-    return posicionDos;
+    return this.posicionDos;
         }
 }
 
@@ -60,16 +60,16 @@ class Tortuga extends Corredor{
 
     avanceTortuga(pasoTortuga){
         this.probabilidadDos = 10;
-        var pasoTortuga = d1.lanzar(probabilidadDos);
+        var pasoTortuga = d1.lanzar(this.probabilidadDos);
         if (pasoTortuga == 1 || pasoTortuga == 2) { //20%
             posicionDos += -6;
         } else if (pasoTortuga == 3 || pasoTortuga == 4 || pasoTortuga == 5) { //30%
             posicionDos += 1;
         } else {  //50%
-            posicionDos += 3;
+            this.posicionDos += 3;
         
         }
-        return posicionDos;
+        return this.posicionDos;
         }
 
 }
@@ -94,7 +94,7 @@ class Carrera{
         if(pasoLiembre > 90 && pasoTortuga < 90) {
             console.log('Liebre gana la carrera');
         }
-        if(pasoLiembre < 90 && pasoTortuga > 90) {
+        else if(pasoLiembre < 90 && pasoTortuga > 90) {
             console.log('La tortuga gana la carrera');
         }
         else {
