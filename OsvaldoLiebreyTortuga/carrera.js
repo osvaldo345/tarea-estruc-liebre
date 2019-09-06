@@ -33,18 +33,18 @@ class Liebre extends Corredor{
 
     }
 
-    avanceLiebre(pasoLiembre){
+    avanceLiebre(pasoLiebre){
         let probabilidadDos = 20;
-        var pasoLiembre = d1.lanzar(probabilidadDos);
-        if (pasoLiembre == 1 || pasoLiembre == 2) { //10%
+        var pasoLiebre = d1.lanzar(probabilidadDos);
+        if (pasoLiebre == 1 || pasoLiebre == 2) { 
             posicionDos += -12;
-        } else if (pasoLiembre == 3 || pasoLiembre == 4 || pasoLiembre == 5) { //15%
+        } else if (pasoLiebre == 3 || pasoLiebre == 4 || pasoLiebre == 5) { 
             posicionDos += -2;
-        } else if (pasoLiembre == 6 || pasoLiembre == 7 || pasoLiembre == 8 || pasoLiembre == 9) { //20%
+        } else if (pasoLiebre == 6 || pasoLiebre == 7 || pasoLiebre == 8 || pasoLiebre == 9) { 
             posicionDos += 0;
-        } else if (pasoLiembre == 10 || pasoLiembre == 11 || pasoLiembre == 12 || pasoLiembre == 13) { //20%
+        } else if (pasoLiebre == 10 || pasoLiebre == 11 || pasoLiebre == 12 || pasoLiebre == 13) { 
             posicionDos += 9;
-        } else {  //35%
+        } else { 
             this.posicionDos += 1;
     }
     return this.posicionDos;
@@ -61,11 +61,11 @@ class Tortuga extends Corredor{
     avanceTortuga(pasoTortuga){
         this.probabilidadDos = 10;
         var pasoTortuga = d1.lanzar(this.probabilidadDos);
-        if (pasoTortuga == 1 || pasoTortuga == 2) { //20%
+        if (pasoTortuga == 1 || pasoTortuga == 2) { 
             posicionDos += -6;
-        } else if (pasoTortuga == 3 || pasoTortuga == 4 || pasoTortuga == 5) { //30%
+        } else if (pasoTortuga == 3 || pasoTortuga == 4 || pasoTortuga == 5) { 
             posicionDos += 1;
-        } else {  //50%
+        } else {  
             this.posicionDos += 3;
         
         }
@@ -75,26 +75,25 @@ class Tortuga extends Corredor{
 }
 
 class Carrera{
-    constructor(){
+    constructor(){}
 
 
-    }
     ganador(){
         var liebre = new Liebre();
         var tortuga = new Tortuga();
-        let pasoLiembre = liebre.avanceLiebre();
+        let pasoLiebre = liebre.avanceLiebre();
         let pasoTortuga = tortuga.avanceTortuga();
         
-        while(tortuga.posicionDos < 90 && liebre.posicionDos < 90){
+        while(tortuga.posicionDos <= 90 && liebre.posicionDos < 90){
             tortuga.avanceTortuga();
             liebre.avanceLiebre();
             console.log('posicion Tortuga ' + tortuga.avanceTortuga());
             console.log('posicion Liebre ' + liebre.avanceLiebre());
         }
-        if(pasoLiembre > 90 && pasoTortuga < 90) {
+        if(pasoLiebre >= 90 && pasoTortuga <= 90) {
             console.log('Liebre gana la carrera');
         }
-        else if(pasoLiembre < 90 && pasoTortuga > 90) {
+        else if(pasoLiebre <= 90 && pasoTortuga >= 90) {
             console.log('La tortuga gana la carrera');
         }
         else {
